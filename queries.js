@@ -82,7 +82,7 @@ async function runQueries() {
 
   // ======================================== TASK =============================================================
   // 1- Show persons who are enrolled in more than 2 courses, display their full name and course count
-  console.log('\n── QUERY 2: Persons with more than 2 courses ──');
+  console.log('\n── QUERY 1: Persons with more than 2 courses ──');
 
   const [topPerson2] = await pool.query(`
     SELECT p.fName, p.lName, COUNT(cr.idcourse) AS courseCount
@@ -102,7 +102,7 @@ async function runQueries() {
 
 
   // 2- list each distinct country and the number of persons in it, only show countries with more than 2 persons
-  console.log('\n── QUERY 3: Countries with more than 2 persons ──');
+  console.log('\n── QUERY 2: Countries with more than 2 persons ──');
 
   const [countriesWithPersons] = await pool.query(`
     SELECT p.country, COUNT(p.idperson) AS personCount
@@ -120,7 +120,7 @@ async function runQueries() {
   }
 
   // 3- Update the email of all persons who have at least one project, set it to their firstName + lastName + '@company.com
-  console.log('\n── QUERY 4: Update email for persons with at least one project ──');
+  console.log('\n── QUERY 3: Update email for persons with at least one project ──');
   const [updateEmailResult] = await pool.query(`
     UPDATE person p
     SET p.email = CONCAT(p.fName, p.lName, '@company.com')
@@ -134,7 +134,7 @@ async function runQueries() {
 
 
   // 4- Delete all courses that belong to persons from a specific country
-  console.log('\n── QUERY 5: Delete courses for persons from a specific country ──');
+  console.log('\n── QUERY 4: Delete courses for persons from a specific country ──');
   const specificCountry = 'USA'; // change this to the desired country
   const [deleteCoursesResult] = await pool.query(`
     DELETE c
@@ -146,7 +146,7 @@ async function runQueries() {
 
 
   // 5- Show each country and the average number of languages spoken by persons from that country, only show countries where the average is more than 1
-  console.log('\n── QUERY 6: Average number of languages spoken by country ──');
+  console.log('\n── QUERY 5: Average number of languages spoken by country ──');
   const [avgLanguagesByCountry] = await pool.query(`
     SELECT p.country, AVG(langCount) AS avgLanguages
     FROM person p
